@@ -1,5 +1,5 @@
 body{
-    background-color: lightblue;
+    background-color: darkgrey;
 }
 div{
     display: flex;
@@ -8,4 +8,5 @@ div{
     justify-content: space-around;
     align-items: center;
     display: flex;
+    background-color: white;
 }
