@@ -97,13 +97,13 @@ button.addEventListener('click', function(){
         for(i=0; i<2; i++){
         
             let firstanswer = document.querySelector('#answerDiv1');
-            firstanswer.innerHTML = "#1:" + " " + element.results[0].incorrect_answers[randNumGenerator(3)];
+            firstanswer.innerHTML = element.results[0].incorrect_answers[randNumGenerator(3)];
             firstanswer.onclick = "firstanswerclicked()"
             firstanswer.className = "1"
             answerArray.push(firstanswer);
 
             let secondanswer = document.querySelector('#answerDiv2');
-            secondanswer.innerHTML = "#2:" + " " + element.results[0].correct_answer
+            secondanswer.innerHTML = element.results[0].correct_answer
             secondanswer.onclick = "secondanswerclicked()";
             secondanswer.className = "2";
             answerArray.push(secondanswer);
@@ -152,17 +152,13 @@ button.addEventListener('click', function(){
                 
             });
         
-            if(ansInput.value == answer2){      //fix score board
+            if(ansInput.value == answer2.textContent){      //fix score board
                 score = score+15;
-                console.log("Higher Score:", score);
+                console.log("Score:", score)
             }else{
                 score = score-5;
-                // console.log("Lower Score:", score);
-                console.log(ansInput.value);
-                console.log(answer2.textcontent);
-                // console.log(anstext.textcontent);
-                console.log()
-            }
+                console.log("Score:", score)
+            }    
             // display();    
                 // //second display function seperate from first
                 // function write(element){
