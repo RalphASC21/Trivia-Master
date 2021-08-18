@@ -1,6 +1,7 @@
 let score = 0
 let trivia;
 
+
 let body = document.querySelector('body');
 let MainDiv = document.createElement('div');
 MainDiv.id = "MainDiv";
@@ -46,6 +47,9 @@ let QAcontents = document.createElement('div');
 QAcontents.className = "QandA";
 MainDiv.appendChild(QAcontents);
 
+
+
+
 //Divs for the first submit button
 let questionDiv = document.createElement('div');
 questionDiv.id = "questionDiv";
@@ -71,6 +75,15 @@ let ansbuttonDiv = document.createElement('div');
 ansbuttonDiv.id = "answerbuttonDiv";
 answerInputDiv.innerHTML = "";
 QAcontents.appendChild(ansbuttonDiv);
+
+let scoreContents = document.createElement('div');
+scoreContents.id = "ScoreContents";
+MainDiv.appendChild(scoreContents);
+
+let scoreDiv = document.createElement('div');
+scoreDiv.className = "answerbuttonDiv";
+scoreDiv.innerHTML = "";
+scoreContents.appendChild(ansbuttonDiv);
 
 //first submit button
 button.addEventListener('click', function(){
@@ -154,91 +167,52 @@ button.addEventListener('click', function(){
         
             if(ansInput.value == answer2.textContent){      //fix score board
                 score = score+15;
-                console.log("Score:", score)
+                console.log("Score:", score) 
+
             }else{
                 score = score-5;
                 console.log("Score:", score)
             }    
-            // display();    
-                // //second display function seperate from first
-                // function write(element){
-                //     questionDiv = document.createElement('div');
-                //     questionDiv.id = "questionDiv";
-                //     MainDiv.appendChild(questionDiv);
+                let Score = document.querySelector('.answerbuttonDiv');
+                Score.innerHTML = "Score:" + " " + score;
+                Score.id = "score";
+                scoreDiv.appendChild(Score);
             
-                //         let oneQuestion = document.createElement('p');
-                //         oneQuestion.innerHTML = element.results[0].question;
-                //         questionDiv.appendChild(oneQuestion);
-
-                //     let answerDiv1 = document.createElement('div');
-                //     answerDiv1.id = "answerDiv1";
-                //     MainDiv.appendChild(answerDiv1);
-                    
-                //     let answerDiv2 = document.createElement('div');
-                //     answerDiv2.id = "answerDiv2";
-                //     MainDiv.appendChild(answerDiv2);
-
-                //         let answerArray = [];
-
-                //         let firstanswer = document.createElement('p');
-                //         firstanswer.innerHTML = element.results[0].incorrect_answers[randNumGenerator(3)];
-                //         firstanswer.onclick = "firstanswerclicked()"
-                //         firstanswer.className = "1"
-                //         answerArray.push(firstanswer);
-                
-                //         let secondanswer = document.createElement('p');
-                //         secondanswer.innerHTML = element.results[0].correct_answer
-                //         secondanswer.onclick = "secondanswerclicked()";
-                //         secondanswer.className = "2";
-                //         answerArray.push(secondanswer);
-                
-                //         let answer1 = answerArray[randNumGenerator(2)];
-                //         let answer2;
-                //         if(answer1 == answerArray[0]){
-                //             answer2 = answerArray[1];
-                //         }else{
-                //             answer2 = answerArray[0];
-                //         }
-
-                //         answerDiv1.appendChild(answer1);
-                //         answerDiv2.appendChild(answer2);
-
-                //     let answerInputDiv = document.createElement('div');
-                //     answerInputDiv.id = "answerInputDiv";
-                //     MainDiv.appendChild(answerInputDiv);
-
-                //         let ansInput = document.createElement('input');
-                //         ansInput.type = "text";
-                //         ansInput.placeholder = "answer";
-                //         ansInput.id = "answer";
-                //         answerInputDiv.appendChild(ansInput);
-
-                //     let ansbuttonDiv = document.createElement('div');
-                //     ansbuttonDiv.id = "answerbuttonDiv";
-                //     MainDiv.appendChild(ansbuttonDiv);
-                
-                //         let answerButton = document.createElement('button');
-                //         answerButton.innerHTML = "submit";
-                //         ansbuttonDiv.appendChild(answerButton);
-                // }
         })  
     }
 })
 
+let database = firebase.database().ref()
+firebase.auth().currentUser
+
+const db = firesbase.database()
+const ref = db.ref('users/' + user.uid)
+const newScore = document.getElementById('#score')
+
+const scoreButton = document.createElement('button');
+scoreButton.id = "scoreButton";
+MainDiv.appendChild(scoreButton);
+
+scoreButton.addEventListener('click',updateScoreDB);
 
 
+function updateUserScore(event2){
+    event2.preventDefauld();
+    const newscore = newScore.value;
 
+    ref.update({
+        "score": newscore,
+    })
 
-
-function firstanswerclicked(){
-    console.log('test')
+    database.push(ref);
 }
-function secondanswerclicked(){
-    console.log('test')
-}
-function thirdanswerclicked(){
-    console.log('test')
-}
-function fourthanswerclicked(){
-    console.log('test')
-}
+
+
+
+
+
+
+
+ref.update({ data })
+
+
