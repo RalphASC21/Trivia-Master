@@ -121,12 +121,16 @@ button.addEventListener('click', function(){
             //answer submit div
             let Input = document.querySelector('#answerInputDiv');
             Input.innerHTML = "";
+
+                // let anstext = document.createElement('p');
+                // anstext.className = "anstext";
+                // Input.appendChild(anstext);
             
-                let ansInput = document.createElement('input');
-                ansInput.type = "text";
-                ansInput.placeholder = "answer";
-                ansInput.id = "answer";
-                Input.appendChild(ansInput);
+                    let ansInput = document.createElement('input');
+                    ansInput.type = "text";
+                    ansInput.placeholder = "answer";
+                    ansInput.id = "answer";
+                    Input.appendChild(ansInput);
 
             let ANSBTN = document.querySelector('#answerbuttonDiv');
             ANSBTN.innerHTML = "";
@@ -148,12 +152,16 @@ button.addEventListener('click', function(){
                 
             });
         
-            if(answer == answer2){      //fix score board
+            if(ansInput.value == answer2){      //fix score board
                 score = score+15;
-                console.log("Score:", score);
+                console.log("Higher Score:", score);
             }else{
                 score = score-5;
-                console.log("Score:", score);
+                // console.log("Lower Score:", score);
+                console.log(ansInput.value);
+                console.log(answer2.textcontent);
+                // console.log(anstext.textcontent);
+                console.log()
             }
             // display();    
                 // //second display function seperate from first
