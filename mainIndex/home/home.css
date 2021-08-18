@@ -1,12 +1,20 @@
-body{
-    background-color: darkgrey;
-}
-div{
+
+
+#bodyHeader{
     display: flex;
-}
-#header{
-    justify-content: space-around;
+    flex-flow: column wrap;
+    justify-content: center;
     align-items: center;
-    display: flex;
-    background-color: white;
+    background-color: blueviolet;
+    margin-top: 5%;
+    margin-left: 20%;
+    margin-right: 20%;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.bodyHeader_text{
+    text-align: center;
+    color:black;
+    font-size: 40px;
 }

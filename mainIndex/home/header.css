@@ -1,0 +1,30 @@
+body{
+    background-color: rgb(57, 56, 126);
+    margin: 0%;
+}
+div{
+    display: flex;
+}
+#header{
+    justify-content: space-around;
+    align-items: center;
+    display: flex;
+    background-color: white;
+    position: sticky;
+}
+
+.table_of_contents a{
+    color: black;
+    text-decoration: none;
+    margin: 10px 10px;
+    padding: 7px 20px;
+    font-family:Arial;
+    font-size: 18px;
+}
+
+.table_of_contents a:hover{
+    color: rgb(87, 87, 87);
+}
+
+/* float in header puts text behind logo when screen is smaller */
+

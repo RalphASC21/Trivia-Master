@@ -148,7 +148,7 @@ button.addEventListener('click', function(){
                 
             });
         
-            if(Input == answer1){      //fix score board
+            if(answer == answer2){      //fix score board
                 score = score+15;
                 console.log("Score:", score);
             }else{

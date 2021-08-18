@@ -1,10 +1,9 @@
 
-
 #MainDiv{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background-color: rgb(118, 192, 118);
+    background-color: rgb(181, 180, 255);
     padding: 30px;
     margin: 20px;
     border-radius: 10px;
