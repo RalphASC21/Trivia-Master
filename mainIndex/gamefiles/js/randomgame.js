@@ -67,6 +67,16 @@ answerDiv2.id = "answerDiv2";
 answerDiv2.innerHTML = "";
 QAcontents.appendChild(answerDiv2);
 
+let answerDiv3 = document.createElement('div');
+answerDiv3.id = "answerDiv3";
+answerDiv3.innerHTML = "";
+QAcontents.appendChild(answerDiv3);
+
+let answerDiv4 = document.createElement('div');
+answerDiv4.id = "answerDiv4";
+answerDiv4.innerHTML = "";
+QAcontents.appendChild(answerDiv4);
+
 let answerInputDiv = document.createElement('div')
 answerInputDiv.id = "answerInputDiv";
 answerInputDiv.innerHTML = "";
@@ -108,10 +118,9 @@ button.addEventListener('click', function(){
         }
             let answerArray = [];
 
-        for(i=0; i<2; i++){
         
             let firstanswer = document.querySelector('#answerDiv1');
-            firstanswer.innerHTML = element.results[0].incorrect_answers[randNumGenerator(3)];
+            firstanswer.innerHTML = element.results[0].incorrect_answers[1];
             firstanswer.onclick = "firstanswerclicked()"
             firstanswer.className = "1"
             answerArray.push(firstanswer);
@@ -121,10 +130,23 @@ button.addEventListener('click', function(){
             secondanswer.onclick = "secondanswerclicked()";
             secondanswer.className = "2";
             answerArray.push(secondanswer);
-        }
+
+            let thirdanswer = document.querySelector('#answerDiv3');
+            thirdanswer.innerHTML = element.results[0].incorrect_answers[0]
+            thirdanswer.onclick = "thirdanswerclicked()";
+            thirdanswer.className = "3";
+            answerArray.push(thirdanswer);
+
+            let fourthanswer = document.querySelector('#answerDiv4');
+            fourthanswer.innerHTML = element.results[0].incorrect_answers[2]
+            fourthanswer.onclick = "fourthanswerclicked()";
+            fourthanswer.className = "4";
+            answerArray.push(fourthanswer);
 
             let answer1 = answerArray[0];
             let answer2 = answerArray[1];
+            let answer3 = answerArray[3];
+            let answer4 = answerArray[4];
 
             //answer submit div
             let Input = document.querySelector('#answerInputDiv');
@@ -172,6 +194,12 @@ button.addEventListener('click', function(){
             }else if(ansInput.value == answer1.textContent){
                 score = score-5;
                 console.log("Score:", score)
+            }else if(ansInput.value == answer3.textContent){
+                score = score-5;
+                console.log("Score:", score);
+            }else if(ansInput.value == answer4.textContent){
+                score = score-5;
+                console.log("Score:", score);
             }    
             let NSRE = document.querySelector('.scoreDiv');
             NSRE.innerHTML = "";
