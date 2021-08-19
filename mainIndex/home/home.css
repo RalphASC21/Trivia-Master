@@ -18,3 +18,28 @@
     color:black;
     font-size: 40px;
 }
+
+#gameButtons{
+    display: flex;
+    justify-content: center;
+}
+
+#randomButton{
+    background-color: #ff854d;
+    color: white;
+    border: none;
+    font-weight: bold;
+    padding: 15px 32px;
+    border-radius: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 13px;
+    margin-top: 20px;
+    /* margin-left:54px;
+    margin-right: 54px; */
+}
+
+button:hover{
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}

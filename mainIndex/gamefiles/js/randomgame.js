@@ -1,4 +1,5 @@
 let score = 0
+let check;
 let trivia;
 
 
@@ -81,9 +82,9 @@ scoreContents.id = "ScoreContents";
 MainDiv.appendChild(scoreContents);
 
 let scoreDiv = document.createElement('div');
-scoreDiv.className = "answerbuttonDiv";
+scoreDiv.className = "scoreDiv";
 scoreDiv.innerHTML = "";
-scoreContents.appendChild(ansbuttonDiv);
+scoreContents.appendChild(scoreDiv);
 
 //first submit button
 button.addEventListener('click', function(){
@@ -121,15 +122,9 @@ button.addEventListener('click', function(){
             secondanswer.className = "2";
             answerArray.push(secondanswer);
         }
-            
 
-            let answer1 = answerArray[randNumGenerator(2)];
-            let answer2;
-            if(answer1 == answerArray[0]){
-                answer2 = answerArray[1];
-            }else{
-                answer2 = answerArray[0];
-            }
+            let answer1 = answerArray[0];
+            let answer2 = answerArray[1];
 
             //answer submit div
             let Input = document.querySelector('#answerInputDiv');
@@ -169,36 +164,54 @@ button.addEventListener('click', function(){
                 score = score+15;
                 console.log("Score:", score) 
 
-            }else{
+                // check = document.createElement('img');
+                // check.src = "https://static.vecteezy.com/system/resources/thumbnails/000/572/885/small_2x/vector61-193-01.jpg";
+                // check.className = "correct";
+                // NSRE.appendChild(check);
+
+            }else if(ansInput.value == answer1.textContent){
                 score = score-5;
                 console.log("Score:", score)
             }    
-                let Score = document.querySelector('.answerbuttonDiv');
+            let NSRE = document.querySelector('.scoreDiv');
+            NSRE.innerHTML = "";
+
+                let Score = document.createElement('p');
                 Score.innerHTML = "Score:" + " " + score;
                 Score.id = "score";
-                scoreDiv.appendChild(Score);
+                NSRE.appendChild(Score);
             
         })  
     }
 })
+let form = document.createElement('form');
+MainDiv.appendChild(form);
 
 let database = firebase.database().ref()
 firebase.auth().currentUser
+const db = firesbase.database();
+const ref = db.ref('users/' + user.uid);
 
-const db = firesbase.database()
-const ref = db.ref('users/' + user.uid)
-const newScore = document.getElementById('#score')
+score = document.getElementById('score');
 
 const scoreButton = document.createElement('button');
 scoreButton.id = "scoreButton";
-MainDiv.appendChild(scoreButton);
+form.appendChild(scoreButton);
 
-scoreButton.addEventListener('click',updateScoreDB);
+scoreButton.addEventListener('click',updateUserScore);
 
 
 function updateUserScore(event2){
     event2.preventDefauld();
-    const newscore = newScore.value;
+    const newscore = score.value;
+
+    score.value = "";
+
+    let value = {
+        SCORE: newscore
+    }
+
+    database.push(value);
 
     ref.update({
         "score": newscore,
