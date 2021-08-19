@@ -146,7 +146,7 @@ button.addEventListener('click', function(){
             let answer1 = answerArray[0];
             let answer2 = answerArray[1];
             let answer3 = answerArray[3];
-            let answer4 = answerArray[4];
+            let answer4 = answerArray[2];
 
             //answer submit div
             let Input = document.querySelector('#answerInputDiv');
@@ -185,6 +185,7 @@ button.addEventListener('click', function(){
             if(ansInput.value == answer2.textContent){      //fix score board
                 score = score+15;
                 console.log("Score:", score) 
+                console.log(secondanswer.textContent)
 
                 // check = document.createElement('img');
                 // check.src = "https://static.vecteezy.com/system/resources/thumbnails/000/572/885/small_2x/vector61-193-01.jpg";
