@@ -218,7 +218,7 @@ MainDiv.appendChild(form);
 
 let database = firebase.database().ref()
 firebase.auth().currentUser
-const db = firesbase.database();
+const db = firebase.database();
 const ref = db.ref('users/' + user.uid);
 
 score = document.getElementById('score');
