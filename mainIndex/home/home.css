@@ -40,6 +40,57 @@
     margin-right: 54px; */
 }
 
+#mathButton{
+    background-color: #8b4dff;
+    color: white;
+    border: none;
+    font-weight: bold;
+    padding: 15px 32px;
+    border-radius: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 13px;
+    margin-top: 20px;
+    margin-left: 20px;
+    /* margin-left:54px;
+    margin-right: 54px; */
+}
+
+#historyButton{
+    background-color: #4dff5c;
+    color: white;
+    border: none;
+    font-weight: bold;
+    padding: 15px 32px;
+    border-radius: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 13px;
+    margin-top: 20px;
+    margin-left: 20px;
+    /* margin-left:54px;
+    margin-right: 54px; */
+}
+
+#animeButton{
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    font-weight: bold;
+    padding: 15px 32px;
+    border-radius: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 13px;
+    margin-top: 20px;
+    margin-left: 20px;
+    /* margin-left:54px;
+    margin-right: 54px; */
+}
+
 button:hover{
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }

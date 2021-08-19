@@ -1,0 +1,28 @@
+#MainDiv{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: rgb(255, 180, 180);
+    padding: 30px;
+    margin: 20px;
+    border-radius: 10px;
+}
+
+#choose{
+    justify-content: center;
+}
+
+#questiondifficulty{
+    justify-content: center;
+    align-items: center;
+}
+
+.subButton{
+    margin-top: 15px;
+    height: fit-content;
+}
+
+.QandA{
+    display: flex;
+    flex-direction: column;
+}
