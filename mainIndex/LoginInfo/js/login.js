@@ -30,5 +30,5 @@ function signOut(){
 		
     auth.signOut();
     alert("Signed Out");
-    window.location.href = "../../../index.html";
+    window.location.href = "../../index.html";
 };
