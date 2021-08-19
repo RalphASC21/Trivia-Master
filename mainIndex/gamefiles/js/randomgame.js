@@ -118,7 +118,7 @@ button.addEventListener('click', function(){
         }
 
             let firstanswer = document.querySelector('#answerDiv1');
-            firstanswer.innerHTML = element.results[0].incorrect_answers[randNumGenerator(3)];
+            firstanswer.innerHTML = element.results[0].incorrect_answers[1];
             firstanswer.onclick = "firstanswerclicked()"
             firstanswer.className = "1"
 
