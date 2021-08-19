@@ -121,25 +121,21 @@ button.addEventListener('click', function(){
             firstanswer.innerHTML = element.results[0].incorrect_answers[randNumGenerator(3)];
             firstanswer.onclick = "firstanswerclicked()"
             firstanswer.className = "1"
-            answerArray.push(firstanswer);
 
             let secondanswer = document.querySelector('#answerDiv2')
             secondanswer.innerHTML = element.results[0].correct_answer
             secondanswer.onclick = "secondanswerclicked()";
             secondanswer.className = "2";
-            answerArray.push(secondanswer);
 
             let thirdanswer = document.querySelector('#answerDiv3');
             thirdanswer.innerHTML = element.results[0].incorrect_answers[0]
             thirdanswer.onclick = "thirdanswerclicked()";
             thirdanswer.className = "3";
-            answerArray.push(thirdanswer);
 
             let fourthanswer = document.querySelector('#answerDiv4');
             fourthanswer.innerHTML = element.results[0].incorrect_answers[2]
             fourthanswer.onclick = "fourthanswerclicked()";
             fourthanswer.className = "4";
-            answerArray.push(fourthanswer);
 
             //answer submit div
             let Input = document.querySelector('#answerInputDiv');
@@ -188,10 +184,10 @@ button.addEventListener('click', function(){
             }else if(ansInput.value == firstanswer.textContent){
                 score = score-5;
                 console.log("Score:", score)
-            }else if(ansInput.value == answer3.textContent){
+            }else if(ansInput.value == thirdanswer.textContent){
                 score = score-5;
                 console.log("Score:", score);
-            }else if(ansInput.value == answer4.textContent){
+            }else if(ansInput.value == fourthanswer.textContent){
                 score = score-5;
                 console.log("Score:", score);
             }    
