@@ -116,16 +116,14 @@ button.addEventListener('click', function(){
             let oneQuestion = document.querySelector('#questionDiv');
             oneQuestion.innerHTML = "Question" + ":" + " " + element.results[0].question;
         }
-            let answerArray = [];
 
-        
             let firstanswer = document.querySelector('#answerDiv1');
-            firstanswer.innerHTML = element.results[0].incorrect_answers[1];
+            firstanswer.innerHTML = element.results[0].incorrect_answers[randNumGenerator(3)];
             firstanswer.onclick = "firstanswerclicked()"
             firstanswer.className = "1"
             answerArray.push(firstanswer);
 
-            let secondanswer = document.querySelector('#answerDiv2');
+            let secondanswer = document.querySelector('#answerDiv2')
             secondanswer.innerHTML = element.results[0].correct_answer
             secondanswer.onclick = "secondanswerclicked()";
             secondanswer.className = "2";
@@ -142,11 +140,6 @@ button.addEventListener('click', function(){
             fourthanswer.onclick = "fourthanswerclicked()";
             fourthanswer.className = "4";
             answerArray.push(fourthanswer);
-
-            let answer1 = answerArray[0];
-            let answer2 = answerArray[1];
-            let answer3 = answerArray[3];
-            let answer4 = answerArray[2];
 
             //answer submit div
             let Input = document.querySelector('#answerInputDiv');
@@ -182,7 +175,7 @@ button.addEventListener('click', function(){
                 
             });
         
-            if(ansInput.value == answer2.textContent){      //fix score board
+            if(ansInput.value == secondanswer.textContent){      //fix score board
                 score = score+15;
                 console.log("Score:", score) 
                 console.log(secondanswer.textContent)
@@ -192,7 +185,7 @@ button.addEventListener('click', function(){
                 // check.className = "correct";
                 // NSRE.appendChild(check);
 
-            }else if(ansInput.value == answer1.textContent){
+            }else if(ansInput.value == firstanswer.textContent){
                 score = score-5;
                 console.log("Score:", score)
             }else if(ansInput.value == answer3.textContent){
