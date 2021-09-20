@@ -1,5 +1,5 @@
 
-#MainDiv{
+#MainSearch{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -7,6 +7,33 @@
     padding: 30px;
     margin: 20px;
     border-radius: 10px;
+}
+
+#MainContent{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: rgb(181, 180, 255);
+    padding: 30px;
+    margin: 20px;
+    border-radius: 10px;
+}
+
+.individualContent{
+    display:flex;
+    flex-direction: column;
+}
+
+.A{
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+.ScoreContents{
+    display: flex;
+    flex-direction: column;
 }
 
 #choose{

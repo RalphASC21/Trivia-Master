@@ -1,39 +1,7 @@
 let score = 0
 let check;
 let trivia;
-
-
-let body = document.querySelector('body');
-let MainDiv = document.createElement('div');
-MainDiv.id = "MainDiv";
-body.appendChild(MainDiv);
-
-let choose = document.createElement('div');
-choose.id = "choose";
-MainDiv.appendChild(choose);
-
-//difficulty div
-let difficulty = document.createElement('div')
-difficulty.id = "questiondifficulty";
-choose.appendChild(difficulty);
-
-    let difficultyTag = document.createElement('p');
-    difficultyTag.innerHTML = "Difficulty:";
-    difficulty.appendChild(difficultyTag);
-
-    let diffInput = document.createElement('input');
-    diffInput.type = "text";
-    diffInput.placeholder = "easy, medium, hard";
-    diffInput.id = "difficulty";
-    difficulty.appendChild(diffInput);
-
-
-//submit button function
-let button = document.createElement('button');
-button.className = "subButton";
-button.innerHTML = "submit";
-choose.appendChild(button);
-
+let incArray = [];
 
 //for randomizing questions
 function randNumGenerator(integer){
@@ -44,61 +12,13 @@ function randNumGenerator(integer){
     return rng;
 }
 
-let QAcontents = document.createElement('div');
-QAcontents.className = "QandA";
-MainDiv.appendChild(QAcontents);
-
-
-
-
-//Divs for the first submit button
-let questionDiv = document.createElement('div');
-questionDiv.id = "questionDiv";
-questionDiv.innerHTML = "";
-QAcontents.appendChild(questionDiv);
-
-let answerDiv1 = document.createElement('div');
-answerDiv1.id = "answerDiv1";
-answerDiv1.innerHTML = "";
-QAcontents.appendChild(answerDiv1);
-
-let answerDiv2 = document.createElement('div');
-answerDiv2.id = "answerDiv2";
-answerDiv2.innerHTML = "";
-QAcontents.appendChild(answerDiv2);
-
-let answerDiv3 = document.createElement('div');
-answerDiv3.id = "answerDiv3";
-answerDiv3.innerHTML = "";
-QAcontents.appendChild(answerDiv3);
-
-let answerDiv4 = document.createElement('div');
-answerDiv4.id = "answerDiv4";
-answerDiv4.innerHTML = "";
-QAcontents.appendChild(answerDiv4);
-
-let answerInputDiv = document.createElement('div')
-answerInputDiv.id = "answerInputDiv";
-answerInputDiv.innerHTML = "";
-QAcontents.appendChild(answerInputDiv);
-
-let ansbuttonDiv = document.createElement('div');
-ansbuttonDiv.id = "answerbuttonDiv";
-answerInputDiv.innerHTML = "";
-QAcontents.appendChild(ansbuttonDiv);
-
-let scoreContents = document.createElement('div');
-scoreContents.id = "ScoreContents";
-MainDiv.appendChild(scoreContents);
-
-let scoreDiv = document.createElement('div');
-scoreDiv.className = "scoreDiv";
-scoreDiv.innerHTML = "";
-scoreContents.appendChild(scoreDiv);
+let diffInput = document.querySelector("#difficulty");
+let button = document.querySelector(".subButton");
+let maincontent = document.querySelector("#MainContent");
 
 //first submit button
 button.addEventListener('click', function(){
-    trivia = "https://opentdb.com/api.php?amount=1&type=multiple&difficulty=" + diffInput.value;
+    trivia = "https://opentdb.com/api.php?amount=10&type=multiple&difficulty=" + diffInput.value;
     
     fetch(trivia)
     .then(function(response){
@@ -106,144 +26,322 @@ button.addEventListener('click', function(){
     })
     .then(function(trivia){
         console.log(trivia)
-        display(trivia);
+        maincontent.innerHTML = "";
+        for(i=0;i<trivia.results.length;i++){
+            display(trivia);
+        }        
         
     });
 
-    function display(element){
-        for(i = 0; i < 10; i++){
-//  + [i-8]
-            let oneQuestion = document.querySelector('#questionDiv');
-            oneQuestion.innerHTML = "Question" + ":" + " " + element.results[0].question;
+})
+
+function display(element){
+    
+    let individualContent = document.createElement('div');
+    individualContent.className = "individualContent";
+    maincontent.appendChild(individualContent);
+
+        let Scorecontents = document.createElement('div');
+            Scorecontents.className = "ScoreContents";
+            individualContent.appendChild(Scorecontents);
+
+                let scoreDiv = document.createElement('div');
+                scoreDiv.className = "ScoreDiv";
+                Scorecontents.appendChild(scoreDiv);
+
+        let Q = document.createElement('div');
+        Q.className = "Q";
+        individualContent.appendChild(Q);
+
+            let questionDiv = document.createElement('div');
+            questionDiv.className = "questionDiv";
+            Q.appendChild(questionDiv);
+
+        let A = document.createElement('div');
+        A.className = "A";
+        individualContent.appendChild(A);
+
+            let answerDiv1 = document.createElement('div');
+            answerDiv1.className = "answerDiv1";
+            A.appendChild(answerDiv1);
+
+            let answerDiv2 = document.createElement('div');
+            answerDiv2.className = "answerDiv2";
+            A.appendChild(answerDiv2);
+
+            let answerDiv3 = document.createElement('div');
+            answerDiv3.className = "answerDiv3";
+            A.appendChild(answerDiv3);
+
+            let answerDiv4 = document.createElement('div');
+            answerDiv4.className = "answerDiv4";
+            A.appendChild(answerDiv4);
+
+            let ansInput = document.createElement('div');
+            ansInput.className = "ansInput";
+            A.appendChild(ansInput);
+
+                let Input = document.createElement('input'); 
+                Input.className = "answerInput";
+                ansInput.appendChild(Input);
+
+                    Input.type = "text";
+                    Input.placeholder = "answer";
+                    Input.class = "answer";
+
+            let BTN = document.createElement('div');
+            BTN.className = "BTN";
+            A.appendChild(BTN);
+
+                let ANSBTN = document.createElement('button');
+                ANSBTN.className = "answerButton";
+                ANSBTN.innerHTML = "submit";
+                BTN.appendChild(ANSBTN);
+
+            let theanswer = document.createElement('div');
+            theanswer.className = "theanswer";
+            A.appendChild(theanswer); 
+
+            let spaceBtwn = document.createElement('hr');
+            A.appendChild(spaceBtwn);
+
+
+
+        let oneQuestion = document.querySelector('.questionDiv');
+        oneQuestion.className = "question";
+        oneQuestion.innerHTML = "(" + element.results[i].category + ")" + " " + "Question #" + [i+1] + ":" + " " + element.results[i].question;
+
+        let firstanswer = document.querySelector('.answerDiv1');
+        firstanswer.className = "1"
+
+        let secondanswer = document.querySelector('.answerDiv2')
+        secondanswer.className = "2";
+
+        let thirdanswer = document.querySelector('.answerDiv3');
+        thirdanswer.className = "3";
+
+        let fourthanswer = document.querySelector('.answerDiv4');
+        fourthanswer.className = "4";
+
+
+        let MultipleChoiceFactor = randNumGenerator(4);
+        
+        if(MultipleChoiceFactor == 0){
+            firstanswer.innerHTML = element.results[i].correct_answer;
+            if(firstanswer.innerHTML == element.results[i].correct_answer){
+                secondanswer.innerHTML = element.results[i].incorrect_answers[randNumGenerator(3)];
+                if(secondanswer.innerHTML == element.results[i].incorrect_answers[0]){
+                    incArray = [1, 2];
+                    thirdanswer.choose = incArray[randNumGenerator(2)];
+                    if(thirdanswer.choose == 1){
+                        thirdanswer.innerHTML = element.results[i].incorrect_answers[1];
+                        fourthanswer.innerHTML = element.results[i].incorrect_answers[2];
+                    }
+                    else if(thirdanswer.choose == 2){
+                        thirdanswer.innerHTML = element.results[i].incorrect_answers[2];
+                        fourthanswer.innerHTML = element.results[i].incorrect_answers[1];
+                    }
+                }
+                else if(secondanswer.innerHTML == element.results[i].incorrect_answers[1]){
+                    incArray = [0, 2];
+                    thirdanswer.choose = incArray[randNumGenerator(2)];
+                    if(thirdanswer.choose == 0){
+                        thirdanswer.innerHTML = element.results[i].incorrect_answers[0];
+                        fourthanswer.innerHTML = element.results[i].incorrect_answers[2];
+                    }
+                    else if(thirdanswer.choose == 2){
+                        thirdanswer.innerHTML = element.results[i].incorrect_answers[2];
+                        fourthanswer.innerHTML = element.results[i].incorrect_answers[0];
+                    }
+                }
+                else if(secondanswer.innerHTML == element.results[i].incorrect_answers[2]){
+                    incArray = [0, 1];
+                    thirdanswer.choose = incArray[randNumGenerator(2)];
+                    if(thirdanswer.choose == 0){
+                        thirdanswer.innerHTML = element.results[i].incorrect_answers[0];
+                        fourthanswer.innerHTML = element.results[i].incorrect_answers[1];
+                    }
+                    else if(thirdanswer.choose == 1){
+                        thirdanswer.innerHTML = element.results[i].incorrect_answers[1];
+                        fourthanswer.innerHTML = element.results[i].incorrect_answers[0];
+                    }
+                }
+            } 
+        }
+        else if(MultipleChoiceFactor == 1){
+            secondanswer.innerHTML = element.results[i].correct_answer;
+            if(secondanswer.innerHTML == element.results[i].correct_answer){
+                thirdanswer.innerHTML = element.results[i].incorrect_answers[randNumGenerator(3)];
+                if(thirdanswer.innerHTML == element.results[i].incorrect_answers[0]){
+                    incArray = [1, 2];
+                    fourthanswer.choose = incArray[randNumGenerator(2)];
+                    if(fourthanswer.choose == 1){
+                        fourthanswer.innerHTML = element.results[i].incorrect_answers[1];
+                        firstanswer.innerHTML = element.results[i].incorrect_answers[2];
+                    }
+                    else if(fourthanswer.choose == 2){
+                        fourthanswer.innerHTML = element.results[i].incorrect_answers[2];
+                        firstanswer.innerHTML = element.results[i].incorrect_answers[1];
+                    }
+                }
+                else if(thirdanswer.innerHTML == element.results[i].incorrect_answers[1]){
+                    incArray = [0, 2];
+                    fourthanswer.choose = incArray[randNumGenerator(2)];
+                    if(fourthanswer.choose == 0){
+                        fourthanswer.innerHTML = element.results[i].incorrect_answers[0];
+                        firstanswer.innerHTML = element.results[i].incorrect_answers[2];
+                    }
+                    else if(fourthanswer.choose == 2){
+                        fourthanswer.innerHTML = element.results[i].incorrect_answers[2];
+                        firstanswer.innerHTML = element.results[i].incorrect_answers[0];
+                    }
+                }
+                else if(thirdanswer.innerHTML == element.results[i].incorrect_answers[2]){
+                    incArray = [0, 1];
+                    fourthanswer.choose = incArray[randNumGenerator(2)];
+                    if(fourthanswer.choose == 0){
+                        fourthanswer.innerHTML = element.results[i].incorrect_answers[0];
+                        firstanswer.innerHTML = element.results[i].incorrect_answers[1];
+                    }
+                    else if(fourthanswer.choose == 1){
+                        fourthanswer.innerHTML = element.results[i].incorrect_answers[1];
+                        firstanswer.innerHTML = element.results[i].incorrect_answers[0];
+                    }
+                }
+            }                
+        }
+        else if(MultipleChoiceFactor == 2){
+            thirdanswer.innerHTML = element.results[i].correct_answer;
+            if(thirdanswer.innerHTML == element.results[i].correct_answer){
+                fourthanswer.innerHTML = element.results[i].incorrect_answers[randNumGenerator(3)];
+                if(fourthanswer.innerHTML == element.results[i].incorrect_answers[0]){
+                    incArray = [1, 2];
+                    firstanswer.choose = incArray[randNumGenerator(2)];
+                    if(firstanswer.choose == 1){
+                        firstanswer.innerHTML = element.results[i].incorrect_answers[1];
+                        secondanswer.innerHTML = element.results[i].incorrect_answers[2];
+                    }
+                    else if(firstanswer.choose == 2){
+                        firstanswer.innerHTML = element.results[i].incorrect_answers[2];
+                        secondanswer.innerHTML = element.results[i].incorrect_answers[1];
+                    }
+                }
+                else if(fourthanswer.innerHTML == element.results[i].incorrect_answers[1]){
+                    incArray = [0, 2];
+                    firstanswer.choose = incArray[randNumGenerator(2)];
+                    if(firstanswer.choose == 0){
+                        firstanswer.innerHTML = element.results[i].incorrect_answers[0];
+                        secondanswer.innerHTML = element.results[i].incorrect_answers[2];
+                    }
+                    else if(firstanswer.choose == 2){
+                        firstanswer.innerHTML = element.results[i].incorrect_answers[2];
+                        secondanswer.innerHTML = element.results[i].incorrect_answers[0];
+                    }
+                }
+                else if(fourthanswer.innerHTML == element.results[i].incorrect_answers[2]){
+                    incArray = [0, 1];
+                    firstanswer.choose = incArray[randNumGenerator(2)];
+                    if(firstanswer.choose == 0){
+                        firstanswer.innerHTML = element.results[i].incorrect_answers[0];
+                        secondanswer.innerHTML = element.results[i].incorrect_answers[1];
+                    }
+                    else if(firstanswer.choose == 1){
+                        firstanswer.innerHTML = element.results[i].incorrect_answers[1];
+                        secondanswer.innerHTML = element.results[i].incorrect_answers[0];
+                    }
+                }
+            }                
+        }
+        else{
+            fourthanswer.innerHTML = element.results[i].correct_answer;
+            if(fourthanswer.innerHTML == element.results[i].correct_answer){
+                firstanswer.innerHTML = element.results[i].incorrect_answers[randNumGenerator(3)];
+                if(firstanswer.innerHTML == element.results[i].incorrect_answers[0]){
+                    incArray = [1, 2];
+                    secondanswer.choose = incArray[randNumGenerator(2)];
+                    if(secondanswer.choose == 1){
+                        secondanswer.innerHTML = element.results[i].incorrect_answers[1];
+                        thirdanswer.innerHTML = element.results[i].incorrect_answers[2];
+                    }
+                    else if(secondanswer.choose == 2){
+                        secondanswer.innerHTML = element.results[i].incorrect_answers[2];
+                        thirdanswer.innerHTML = element.results[i].incorrect_answers[1];
+                    }
+                }
+                else if(firstanswer.innerHTML == element.results[i].incorrect_answers[1]){
+                    incArray = [0, 2];
+                    secondanswer.choose = incArray[randNumGenerator(2)];
+                    if(secondanswer.choose == 0){
+                        secondanswer.innerHTML = element.results[i].incorrect_answers[0];
+                        thirdanswer.innerHTML = element.results[i].incorrect_answers[2];
+                    }
+                    else if(secondanswer.choose == 2){
+                        secondanswer.innerHTML = element.results[i].incorrect_answers[2];
+                        thirdanswer.innerHTML = element.results[i].incorrect_answers[0];
+                    }
+                }
+                else if(firstanswer.innerHTML == element.results[i].incorrect_answers[2]){
+                    incArray = [0, 1];
+                    secondanswer.choose = incArray[randNumGenerator(2)];
+                    if(secondanswer.choose == 0){
+                        secondanswer.innerHTML = element.results[i].incorrect_answers[0];
+                        thirdanswer.innerHTML = element.results[i].incorrect_answers[1];
+                    }
+                    else if(secondanswer.choose == 1){
+                        secondanswer.innerHTML = element.results[i].incorrect_answers[1];
+                        thirdanswer.innerHTML = element.results[i].incorrect_answers[0];
+                    }
+                }
+            }
         }
 
-            let firstanswer = document.querySelector('#answerDiv1');
-            firstanswer.innerHTML = element.results[0].incorrect_answers[1];
-            firstanswer.onclick = "firstanswerclicked()"
-            firstanswer.className = "1"
+    //call for the answer submit button
+    ANSBTN.addEventListener('click', function(){
 
-            let secondanswer = document.querySelector('#answerDiv2')
-            secondanswer.innerHTML = element.results[0].correct_answer
-            secondanswer.onclick = "secondanswerclicked()";
-            secondanswer.className = "2";
+        let score = document.querySelector('.score');
 
-            let thirdanswer = document.querySelector('#answerDiv3');
-            thirdanswer.innerHTML = element.results[0].incorrect_answers[0]
-            thirdanswer.onclick = "thirdanswerclicked()";
-            thirdanswer.className = "3";
+        let showAnswer = document.createElement('p');
+        showAnswer.className = "ShowAnswer";           
+        theanswer.appendChild(showAnswer);
 
-            let fourthanswer = document.querySelector('#answerDiv4');
-            fourthanswer.innerHTML = element.results[0].incorrect_answers[2]
-            fourthanswer.onclick = "fourthanswerclicked()";
-            fourthanswer.className = "4";
+        for(i=0;i<element.results.length;i++){
 
-            //answer submit div
-            let Input = document.querySelector('#answerInputDiv');
-            Input.innerHTML = "";
-
-                // let anstext = document.createElement('p');
-                // anstext.className = "anstext";
-                // Input.appendChild(anstext);
-            
-                    let ansInput = document.createElement('input');
-                    ansInput.type = "text";
-                    ansInput.placeholder = "answer";
-                    ansInput.id = "answer";
-                    Input.appendChild(ansInput);
-
-            let ANSBTN = document.querySelector('#answerbuttonDiv');
-            ANSBTN.innerHTML = "";
-
-                let answerButton = document.createElement('button');
-                answerButton.innerHTML = "submit";
-                ANSBTN.appendChild(answerButton);
-
-        //call for the answer submit button
-        answerButton.addEventListener('click', function(){
-            
-            trivia = "https://opentdb.com/api.php?amount=1&type=multiple&difficulty=" + diffInput.value;
-            fetch(trivia)
-            .then(function(response){
-                return response.json()
-            })
-            .then(function(trivia){
-                console.log(trivia)
-                
-            });
-        
-            if(ansInput.value == secondanswer.textContent){      //fix score board
+            if(Input.value == element.results[i].correct_answer){
                 score = score+15;
-                console.log("Score:", score) 
-                console.log(secondanswer.textContent)
+                BTN.innerHTML = "";
+                showAnswer.innerHTML = "Correct!";
+            }
+            else if(Input.value == element.results[i].incorrect_answers[0]){
+                score = score-5;
+                BTN.innerHTML = "";
+                showAnswer.innerHTML = "Incorrect. The correct answer was" + " " + element.results[i].correct_answer + ".";
+            }
+            else if(Input.value == element.results[i].incorrect_answers[1]){
+                score = score-5;
+                BTN.innerHTML = "";
+                showAnswer.innerHTML = "Incorrect. The correct answer was" + " " + element.results[i].correct_answer + ".";
+            }
+            else if(Input.value == element.results[i].incorrect_answers[2]){
+                score = score-5;
+                BTN.innerHTML = "";
+                showAnswer.innerHTML = "Incorrect. The correct answer was" + " " + element.results[i].correct_answer + ".";
+            }
+            else if(Input.value == null){
+                score = 0;
+            }
 
-                // check = document.createElement('img');
-                // check.src = "https://static.vecteezy.com/system/resources/thumbnails/000/572/885/small_2x/vector61-193-01.jpg";
-                // check.className = "correct";
-                // NSRE.appendChild(check);
-
-            }else if(ansInput.value == firstanswer.textContent){
-                score = score-5;
-                console.log("Score:", score)
-            }else if(ansInput.value == thirdanswer.textContent){
-                score = score-5;
-                console.log("Score:", score);
-            }else if(ansInput.value == fourthanswer.textContent){
-                score = score-5;
-                console.log("Score:", score);
-            }    
-            let NSRE = document.querySelector('.scoreDiv');
+            let NSRE = document.querySelector('.ScoreDiv');
             NSRE.innerHTML = "";
 
                 let Score = document.createElement('p');
                 Score.innerHTML = "Score:" + " " + score;
-                Score.id = "score";
+                Score.className = "score";
                 NSRE.appendChild(Score);
-            
-        })  
-    }
-})
-let form = document.createElement('form');
-MainDiv.appendChild(form);
+           
+        }//forloop for "button click function"
 
-let database = firebase.database().ref()
-firebase.auth().currentUser
-const db = firebase.database();
-const ref = db.ref('users/' + user.uid);
+    }) //button click function
 
-score = document.getElementById('score');
-
-const scoreButton = document.createElement('button');
-scoreButton.id = "scoreButton";
-form.appendChild(scoreButton);
-
-scoreButton.addEventListener('click',updateUserScore);
-
-
-function updateUserScore(event2){
-    event2.preventDefauld();
-    const newscore = score.value;
-
-    score.value = "";
-
-    let value = {
-        SCORE: newscore
-    }
-
-    database.push(value);
-
-    ref.update({
-        "score": newscore,
-    })
-
-    database.push(ref);
-}
-
-
-
-
-
-
-
-ref.update({ data })
+} // function display()
 
 
